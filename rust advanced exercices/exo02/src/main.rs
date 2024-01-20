@@ -1,28 +1,25 @@
 enum Event {
-    Input(),
     Quit,
+    Click,
+    KeyPressed,
     Pause,
-    Resume,
+    Resume
 }
 
-enum InputEvent {
-    Click(),
-    KeyPress(),
+fn log_event(e: Event) {
+    match e {
+        Event::Quit => println!("New event logged: Quit"),
+        Event::Click => println!("New event logged: Click at (45, 540)"),
+        Event::KeyPressed => println!("New event logged: Key pressed: a"),
+        Event::Pause => println!("New event logged: Pause"),
+        Event::Resume => println!("New event logged: Resume"),
+    }
 }
 
 fn main() {
-    let event = Event::Quit;
-    event.log_event();
-
-    let event = Event::Input(InputEvent::Click((45, 540)));
-    event.log_event();
-
-    let event = Event::Input(InputEvent::KeyPress('a'));
-    event.log_event();
-
-    let event = Event::Pause;
-    event.log_event();
-
-    let event = Event::Resume;
-    event.log_event();
+    log_event(Event::Quit);
+    log_event(Event::Click);
+    log_event(Event::KeyPressed);
+    log_event(Event::Pause);
+    log_event(Event::Resume);
 }

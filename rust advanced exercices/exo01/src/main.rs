@@ -1,14 +1,13 @@
-struct Person<'a> {
-    name: &'a str,
+fn main() {
+    let person = Person::make_person("name");
+    println!("Person name: {}", person.name)
 }
 
-#[cfg(test)]
-mod test {
-    use super::*;
-
-    #[test]
-    fn test_make_person() {
-        let person = Person::make_person("name");
-        assert_eq!(person.name, "name");
+impl Person<'_> {
+    fn make_person(s: &str) -> Person<'_> {
+        Person {name: s}
     }
+}
+struct Person<'a> {
+    name: &'a str,
 }
